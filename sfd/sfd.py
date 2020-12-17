@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -----------------------------------------------------------------------------
 # Copyright © 2020 Aleksandr Suvorov
 # Licensed under the terms of the MIT License
