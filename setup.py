@@ -16,7 +16,7 @@ PACKAGE = "sfd"
 VERSION = __import__(PACKAGE).__version__
 AUTHOR = __import__(PACKAGE).__author__
 AUTHOR_EMAIL = "myhackband@yandex.ru"
-DESCRIPTION = "Smart Console utilities for killing, zeroing, deleting files." \
+DESCRIPTION = "Smart Files Destruction - console utilities for killing, zeroing, deleting files." \
               " Aleksandr Suvorov | myhackband@yandex.ru | Donate: 4276 4417 5763 7686"
 NAME = "sfd"
 URL = "https://github.com/mysmarthub/sfd"

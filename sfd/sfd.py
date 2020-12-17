@@ -33,7 +33,7 @@ def get_num_files(path):
 
 
 def logo_start():
-    print('SmartTerminal Files Destroyer'.center(COLUMNS, '='))
+    print('Smart Files Destroyer'.center(COLUMNS, '='))
     print('Aleksandr Suvorov | myhackband@ya.ru'.center(COLUMNS, '-'))
     print('Utility for mashing, zeroing, deleting files'.center(COLUMNS, '='))
 
@@ -50,7 +50,7 @@ def get_path():
 
 def logo_dec(func):
     def deco():
-        print('Smart Terminal Files Destroyer'.center(COLUMNS, '='))
+        print('Smart Files Destroyer'.center(COLUMNS, '='))
         print('Aleksandr Suvorov | myhackband@ya.ru'.center(COLUMNS, '-'))
         print('Utility for mashing, zeroing, deleting files'.center(COLUMNS, '='))
         func()
@@ -71,7 +71,7 @@ def make_error_log(error_list):
 def createParser():
     parser = argparse.ArgumentParser(
         description='Console utilities for destroying, zeroing, and deleting files',
-        prog='SmartTerminal Files Destroyer',
+        prog='Smart Files Destroyer',
         epilog="""https://githib.com/mysmarthub/sfd""",
     )
     parser.add_argument('paths', nargs='+', help='Paths to files and folders')

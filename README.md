@@ -1,4 +1,4 @@
-Smart Terminal Files Destroyer
+Smart Files Destroyer
 ===
 
 License:
@@ -25,7 +25,7 @@ Description:
 Launch and use:
 ---
 ```
-usage: Smart Terminal Files Destroyer [-h] [--log] [--version] paths [paths ...]
+usage: Smart Files Destroyer [-h] [--log] [--version] paths [paths ...]
 
 Console utilities for destroying, zeroing, and deleting files
 
