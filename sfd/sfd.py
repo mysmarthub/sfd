@@ -82,11 +82,11 @@ def createParser():
 
 
 def status_print(status):
-    print(''.center(COLUMNS, '-'))
     if status:
         print('Done!')
     else:
         print('Error!')
+    print(''.center(COLUMNS, '-'))
 
 
 def work(obj_dict, method=1, log=False):
