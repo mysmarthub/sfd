@@ -115,3 +115,9 @@ https://money.yandex.ru/to/4100110928527458
 Sberbank Russia: 
 
 `4276 4417 5763 7686`
+
+---
+[![Download Smart Files Destroyer](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/smart-files-destroyer/files/latest/download)
+
+---
+[![Download Smart Files Destroyer](https://img.shields.io/sourceforge/dt/smart-files-destroyer.svg)](https://sourceforge.net/projects/smart-files-destroyer/files/latest/download)

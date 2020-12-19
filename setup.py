@@ -22,7 +22,7 @@ NAME = "sfd"
 URL = "https://github.com/mysmarthub/sfd"
 LICENSE = 'MIT'
 LONG_DESCRIPTION = open(join(dirname(__file__), 'README.md')).read()
-INSTALL_REQUIRES = open(join(dirname(__file__), 'requirements.txt')).read()
+INSTALL_REQUIRES = []
 PLATFORM = ['Linux, Windows']
 CLASSIFIERS = [
     "Development Status :: 5 - Production/Stable",
