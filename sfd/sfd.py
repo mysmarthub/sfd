@@ -20,7 +20,7 @@ import datetime
 
 
 COLUMNS, _ = shutil.get_terminal_size()
-VERSION = 'v0.0.3'
+VERSION = '0.0.4'
 
 
 def get_num_files(path):
@@ -77,7 +77,7 @@ def createParser():
     parser.add_argument('paths', nargs='+', help='Paths to files and folders')
     parser.add_argument('--log', help='Save errors log',
                         action='store_const', const=True, default=False)
-    parser.add_argument('--version', action='version', help='Program version', version='%(prog)s {}'.format(VERSION))
+    parser.add_argument('--version', action='version', help='Program version', version='%(prog)s v{}'.format(VERSION))
     return parser
 
 

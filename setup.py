@@ -16,7 +16,7 @@ PACKAGE = "sfd"
 VERSION = __import__(PACKAGE).__version__
 AUTHOR = __import__(PACKAGE).__author__
 AUTHOR_EMAIL = "myhackband@yandex.ru"
-DESCRIPTION = "Smart Files Destruction - console utilities for killing, zeroing, deleting files." \
+DESCRIPTION = "Smart Files Destruction - console utilities for destruction, zeroing, deleting files." \
               " Aleksandr Suvorov | myhackband@yandex.ru | Donate: 4276 4417 5763 7686"
 NAME = "sfd"
 URL = "https://github.com/mysmarthub/sfd"
@@ -25,12 +25,18 @@ LONG_DESCRIPTION = open(join(dirname(__file__), 'README.md')).read()
 INSTALL_REQUIRES = open(join(dirname(__file__), 'requirements.txt')).read()
 PLATFORM = ['Linux, Windows']
 CLASSIFIERS = [
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: System Administrators",
     "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
     "Operating System :: OS Independent",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities"
 ]
 KEYWORDS = [
     'sfd',
@@ -42,10 +48,10 @@ KEYWORDS = [
     'smart cleaner',
     'smartcleaner',
     'shred',
-    'my cleaner',
+    'mycleaner',
     'aleksandr suvorov',
-    'smart py',
-    'hack band'
+    'smart-py.ru',
+    'hackband.ru'
 ]
 setup(
     name=NAME,

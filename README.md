@@ -1,18 +1,26 @@
 Smart Files Destroyer
 ===
 
-License:
----
----
-MIT
+    Created: Aleksandr Suvorov
+    Email: myhackband@yandex.ru
+![GitHub repo size](https://img.shields.io/github/repo-size/mysmarthub/sfd)
+[![GitHub all releases](https://img.shields.io/github/downloads/mysmarthub/sfd/total?label=github%20downloads)](https://github.com/mysmarthub/sfd/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/sfd?label=pypi%20downloads)](https://pypi.org/project/sfd)
+![GitHub](https://img.shields.io/github/license/mysmarthub/sfd)
+![GitHub Repo stars](https://img.shields.io/github/stars/mysmarthub/sfd?style=social)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/mysmarthub/sfd)
+![PyPI](https://img.shields.io/pypi/v/sfd)
+![PyPI - Format](https://img.shields.io/pypi/format/sfd)
+
+
 
 Description:
 ---
 ---
-    Console utilities for destroying,
+    Console utilities for destruction,
     zeroing, and deleting files.
     -------------------------------------------------------
-    The utility allows you to destroy files, 
+    The utility allows you to destruct files, 
     reset them to zero and delete them, 
     for complete or partial difficulty in 
     restoring them after deletion.
@@ -30,7 +38,7 @@ usage: Smart Files Destroyer [-h] [--log] [--version] paths [paths ...]
 Console utilities for destroying, zeroing, and deleting files
 
 positional arguments:
-  paths       Space-separated paths to files and folders
+  paths       Paths to files and folders
 
 optional arguments:
   -h, --help  show this help message and exit
@@ -59,12 +67,12 @@ optional arguments:
 > 
 >`sudo pip install sfd`
 > 
->`sudo sfd [options]`
+>`sudo sfd /path1/ /path2/ /pathN/`
 
 >To run the utility, use:
 
 ```
-git clone https://github.com/mysmarthub/sfd/
+git clone https://github.com/mysmarthub/sfd.git
 cd sfd
 pip install -r requirements
 python sfd/sfdstart.py -h
