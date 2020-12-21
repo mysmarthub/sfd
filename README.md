@@ -22,6 +22,10 @@ Smart Files Destroyer
 
 ---
 
+![Smart Files Destroyer](https://github.com/mysmarthub/sfd/raw/master/images/logo.png)
+
+---
+
 Help the project financially:
 ---
 >Yandex Money:
