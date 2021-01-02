@@ -17,12 +17,12 @@ VERSION = __import__(PACKAGE).__version__
 AUTHOR = __import__(PACKAGE).__author__
 AUTHOR_EMAIL = "myhackband@yandex.ru"
 DESCRIPTION = "Smart Files Destruction - console utilities for destruction, zeroing, deleting files." \
-              " Aleksandr Suvorov | myhackband@yandex.ru | Donate: 4276 4417 5763 7686"
+              " Aleksandr Suvorov | https://github.com/mysmarthub/sfd | Donate: 4048 4150 0400 5852"
 NAME = "sfd"
 URL = "https://github.com/mysmarthub/sfd"
 LICENSE = 'MIT'
 LONG_DESCRIPTION = open(join(dirname(__file__), 'README.md')).read()
-INSTALL_REQUIRES = []
+INSTALL_REQUIRES = open(join(dirname(__file__), 'requirements.txt')).read()
 PLATFORM = ['Linux, Windows']
 CLASSIFIERS = [
     "Development Status :: 5 - Production/Stable",

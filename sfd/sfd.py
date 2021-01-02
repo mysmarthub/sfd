@@ -4,81 +4,34 @@
 # Licensed under the terms of the MIT License
 # (see LICENSE.txt for details)
 # -----------------------------------------------------------------------------
-# Aleksandr Suvorov
-# Email: myhackband@yandex.ru
 # Github: https://github.com/mysmarthub/sfd/
 # -----------------------------------------------------------------------------
-"""Smart Console utility for destroying, zeroing, and deleting files."""
+"""Smart Console utility for destroying (shred), zeroing, and deleting files."""
 import argparse
-import sys
+import datetime
 import shutil
-import os
+
 from pathlib import Path
+
 from mycleaner import smart
 from mycleaner import cleaner
-import datetime
 
 
 COLUMNS, _ = shutil.get_terminal_size()
-VERSION = '0.0.4'
+VERSION = '0.0.5'
 
 
-def get_num_files(path):
-    if Path(path).is_dir():
-        return sum([len(files) for _, _, files in os.walk(path)])
-    elif Path(path).is_file():
-        return 1
-    else:
-        return 0
-
-
-def logo_start():
-    print('Smart Files Destroyer'.center(COLUMNS, '='))
-    print('Aleksandr Suvorov | myhackband@ya.ru'.center(COLUMNS, '-'))
-    print('Utility for mashing, zeroing, deleting files'.center(COLUMNS, '='))
-
-
-def logo_end():
-    print(''.center(COLUMNS, '='))
-    print('The program is complete'.center(COLUMNS, '-'))
-
-
-def get_path():
-    if len(sys.argv) > 1:
-        return [path for path in sys.argv[1:] if Path(path).exists() and (Path(path).is_file() or Path(path).is_dir())]
-
-
-def logo_dec(func):
-    def deco():
-        print('Smart Files Destroyer'.center(COLUMNS, '='))
-        print('Aleksandr Suvorov | myhackband@ya.ru'.center(COLUMNS, '-'))
-        print('Utility for mashing, zeroing, deleting files'.center(COLUMNS, '='))
-        func()
-        print(''.center(COLUMNS, '='))
-        print('The program is complete'.center(COLUMNS, '-'))
-    return deco
+def check_path(path):
+    return True if Path(path).exists() else False
 
 
 def make_error_log(error_list):
     name = 'sfd_err_log.txt'
-    with open(name, 'w') as f:
-        print(f'Errors {datetime.datetime.now()}'.center(COLUMNS, '='), file=f)
+    with open(name, 'w') as file:
+        print(f'Errors {datetime.datetime.now()}'.center(COLUMNS, '='), file=file)
         for err in error_list:
-            print(err, file=f)
+            print(err, file=file)
     print(f'Save {name}')
-
-
-def createParser():
-    parser = argparse.ArgumentParser(
-        description='Console utilities for destroying, zeroing, and deleting files',
-        prog='Smart Files Destroyer',
-        epilog="""https://githib.com/mysmarthub/sfd""",
-    )
-    parser.add_argument('paths', nargs='+', help='Paths to files and folders')
-    parser.add_argument('--log', help='Save errors log',
-                        action='store_const', const=True, default=False)
-    parser.add_argument('--version', action='version', help='Program version', version='%(prog)s v{}'.format(VERSION))
-    return parser
 
 
 def status_print(status):
@@ -89,26 +42,23 @@ def status_print(status):
     print(''.center(COLUMNS, '-'))
 
 
-def work(obj_dict, method=1, log=False):
+def work(obj_dict, method=1, log=False, shreds=30):
     my_cleaner = cleaner.Cleaner()
-    while True:
-        try:
-            my_cleaner.shreds = int(input('Enter the number of overwrites for files: '))
-        except ValueError:
-            my_cleaner.shreds = 30
-        break
+    my_cleaner.shreds = shreds
     for obj in obj_dict.values():
         print(f'Working with: {obj.path}'.center(COLUMNS, '='))
+        count = 0
         for file in obj.get_files():
+            count += 1
             status = None
             if method == 1:
-                print(f'Destroying the file: {file}')
+                print(f'{count} Destroying the file: {file}')
                 status = my_cleaner.shred_file(file)
             elif method == 2:
-                print(f'Resetting the file: {file}')
+                print(f'{count} Resetting the file: {file}')
                 status = my_cleaner.zero_file(file)
             elif method == 3:
-                print(f'Delete files: {file}')
+                print(f'{count} Delete files: {file}')
                 status = my_cleaner.del_file(file)
             status_print(status)
     print('The work has been completed'.center(COLUMNS, '='))
@@ -117,35 +67,68 @@ def work(obj_dict, method=1, log=False):
     if log and my_cleaner.errors:
         make_error_log(my_cleaner.errors)
     my_cleaner.reset_error_list()
-
-
-def print_info(obj_dict):
-    print(f'Counting files...')
-    for val in obj_dict.values():
-        print(f'path: {val.path} | files[{val.num_of_files}] | folders[{val.num_of_dirs}]')
-    print(f''.center(COLUMNS, '-'))
+    my_cleaner.reset_count()
 
 
 def make_path_obj(path_list):
-    return {n: smart.PathObj(path) for n, path in enumerate(path_list, 1)} if path_list else False
+    if path_list:
+        return {n: smart.PathObj(path) for n, path in enumerate(path_list, 1)}
+    return False
 
 
 def make_path_list(path_list):
+    path_list = set(path_list)
     return [path for path in path_list if Path(path).exists()]
 
 
-def get_user_input(obj_dict):
+def createParser():
+    parser = argparse.ArgumentParser(
+        description='Smart Console utility for destroying (shred), zeroing, and deleting files',
+        prog='Smart Files Destroyer',
+        epilog="""myhackband@ya.ru""",
+    )
+    parser.add_argument('--p', '--paths', nargs='+', help='Paths to files and folders')
+    parser.add_argument('--o', '--overwrites', type=int, help='Number of overwrites', default=0)
+    parser.add_argument('--s', help='Shredding and delete file', action='store_const', const=True, default=False)
+    parser.add_argument('--z', help='Zeroing no delete file', action='store_const', const=True, default=False)
+    parser.add_argument('--d', help='Zeroing and delete file', action='store_const', const=True, default=False)
+    parser.add_argument('--log', help='Save errors log', action='store_const', const=True, default=False)
+    parser.add_argument('--version', action='version', help='Program version', version='%(prog)s v{}'.format(VERSION))
+    return parser
+
+
+def get_paths():
+    path_list = []
     while True:
-        num_files = sum(obj.num_of_files for obj in obj_dict.values())
-        if not num_files:
-            print('No files found...')
-            break
-        print('Select the desired action:\n0. Exit\n1. Destruction and delete\n2. '
-              'Zeroing not delete\n3. Zeroing and delete')
+        print(''.center(COLUMNS, '-'))
+        user_path = input('Enter the path to the file or folder or "q" + Enter to continue: ')
+        if user_path in ['q', 'й']:
+            if path_list:
+                break
+            else:
+                print('\nError! You didn\'t add any paths.')
+                continue
+        elif check_path(user_path):
+            path_list.append(user_path)
+            print('Path added successfully')
+            continue
+        else:
+            print('Error! The wrong way!')
+            continue
+    return path_list
+
+
+def get_method():
+    while True:
+        print(''.center(COLUMNS, '-'))
+        print('Select the desired action (Ctrl+C to exit):\n'
+              '1. Destruction (shred) and delete\n'
+              '2. Zeroing not delete\n'
+              '3. Zeroing and delete')
         print(''.center(COLUMNS, '-'))
         try:
             user_input = int(input('Input: '))
-            if user_input not in [0, 1, 2, 3]:
+            if user_input not in [1, 2, 3]:
                 raise ValueError
         except ValueError:
             print(''.center(COLUMNS, '-'))
@@ -155,21 +138,69 @@ def get_user_input(obj_dict):
             return user_input
 
 
-def main():
+def get_shreds():
+    while True:
+        try:
+            shreds = int(input('Enter the number of file overwrites: '))
+        except ValueError:
+            print(''.center(COLUMNS, '-'))
+            print('Input error!')
+        else:
+            return shreds
+
+
+def get_args(func):
     parser = createParser()
     namespace = parser.parse_args()
-    logo_start()
-    path_list = make_path_list(namespace.paths)
-    if path_list:
-        print(f'Paths added: {len(path_list)}')
-        obj_dict = make_path_obj(path_list)
-        print_info(obj_dict)
-        user_input = get_user_input(obj_dict)
-        if user_input:
-            work(obj_dict=obj_dict, method=user_input, log=namespace.log)
-    else:
-        print('Error! You haven\'t added a path...')
-    logo_end()
+
+    def deco():
+        print(f'Smart Files Destroyer {VERSION}'.center(COLUMNS, '='))
+        print('Aleksandr Suvorov | https://githib.com/mysmarthub/sfd '.center(COLUMNS, '-'))
+        print('Donate: 4048 4150 0400 5852 | 4276 4417 5763 7686'.center(COLUMNS, ' '))
+        print('Utility for mashing, zeroing, deleting files'.center(COLUMNS, '='))
+        func(namespace)
+        print(''.center(COLUMNS, '='))
+        print('The program is complete'.center(COLUMNS, '-'))
+        print('Donate: 4048 4150 0400 5852 | 4276 4417 5763 7686'.center(COLUMNS, ' '))
+
+    return deco
+
+
+@get_args
+def main(namespace):
+    try:
+        if not namespace.p:
+            print('To work, specify the path/paths to the file/files folder/folders...')
+            namespace.p = get_paths()
+        path_list = make_path_list(namespace.p)
+        if path_list:
+            print(f'Paths added: {len(path_list)}')
+            print(''.center(COLUMNS, '-'))
+            obj_dict = make_path_obj(path_list)
+            print(f'Counting files...')
+            for val in obj_dict.values():
+                print(f'path: {val.path} | files[{val.num_of_files}] | folders[{val.num_of_dirs}]')
+            if not namespace.s and not namespace.z and not namespace.d:
+                method = get_method()
+                if method == 1:
+                    namespace.s = True
+                elif method == 2:
+                    namespace.z = True
+                else:
+                    namespace.d = True
+            if namespace.s:
+                if not namespace.o:
+                    namespace.o = get_shreds()
+                method = 1
+            elif namespace.z:
+                method = 2
+            else:
+                method = 3
+            work(obj_dict=obj_dict, method=method, log=namespace.log, shreds=namespace.o)
+        else:
+            print('Error! You haven\'t added a path...')
+    except KeyboardInterrupt:
+        pass
 
 
 if __name__ == '__main__':

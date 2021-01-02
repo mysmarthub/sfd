@@ -1,10 +1,10 @@
 Smart Files Destroyer
 ===
     
-    Console utilities for destruction,
-    zeroing, and deleting files.
+>Smart Console utility for destroying (shred), 
+> zeroing, and deleting files.
 
->Created: Aleksandr Suvorov
+>Developer: Aleksandr Suvorov
 
 [![PyPI](https://img.shields.io/pypi/v/sfd)](https://pypi.org/project/sfd)
 [![PyPI - Format](https://img.shields.io/pypi/format/sfd)](https://pypi.org/project/sfd)
@@ -23,7 +23,7 @@ Smart Files Destroyer
 
 ---
 
-![Smart Files Destroyer](https://github.com/mysmarthub/sfd/raw/master/images/logo.png)
+![Smart Files Destroyer](https://github.com/mysmarthub/sfd/raw/master/images/sfd_logo.png)
 
 ---
 
@@ -42,31 +42,59 @@ https://paypal.me/myhackband
 
 Description:
 ---
-    Console utilities for destruction,
-    zeroing, and deleting files.
-    -------------------------------------------------------
-    The utility allows you to destruct files, 
-    reset them to zero and delete them, 
-    for complete or partial difficulty in 
-    restoring them after deletion.
-
+>Console utility for destruction,
+> zeroing, and deleting files.
+>
+>The utility allows you to destruct files, 
+> reset them to zero and delete them, 
+> for complete or partial difficulty in 
+> restoring them after deletion.
+> 
+> >Be careful! When adding folders, all files from all subfolders 
+will be added recursively.
+> 
+> >When you run the program with all the parameters, 
+> all files located at the specified path will be destroyed, 
+> including those nested in other folders,
+> if you specify all the arguments, then after 
+> starting the utility will start working without 
+> confirmation, so be very careful!
+> 
+> The utility can be run with or without command 
+> line arguments to allow you to select the desired parameters manually.
+> 
+> Run the utility without arguments and follow the instructions below.
+> 
+> To run the utility with arguments, 
+> if you specify all the arguments, then after 
+> starting the utility will start working without confirmation, 
+> so be very careful! If you do not specify 
+> one of the important arguments such as the path, 
+> the number of mashing or the method to work with, 
+> the utility will start, but will prompt you to enter 
+> the necessary parameters.
 
 ---
 
 Help:
 ---
 ```
-usage: Smart Files Destroyer [-h] [--log] [--version] paths [paths ...]
+    usage: Smart Files Destroyer [-h] [--p P [P ...]] [--o O] [--s] [--z] [--d] [--log] [--version]
+    
+    Smart Console utility for destroying (shred), zeroing, and deleting files
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      --p P [P ...], --paths P [P ...]
+                            Paths to files and folders
+      --o O, --overwrites O
+                            Number of overwrites
+      --s                   Shredding and delete file
+      --z                   Zeroing no delete file
+      --d                   Zeroing and delete file
+      --log                 Save errors log
+      --version             Program version
 
-Console utilities for destroying, zeroing, and deleting files
-
-positional arguments:
-  paths       Paths to files and folders
-
-optional arguments:
-  -h, --help  show this help message and exit
-  --log       Save errors log
-  --version   Program version
 ```
 
 >Package installation:
@@ -81,16 +109,14 @@ optional arguments:
 
 >Use:
 
-`pip install sfd`
-
-`sfd [options]`
+`sfd --p /path/ /path2/file.file --o 100 --s --log`
 
 >To delete some files, you may need administrator rights. 
 > To do this, install the package with the command:
 > 
 >`sudo pip install sfd`
 > 
->`sudo sfd /path1/ /path2/ /pathN/`
+>`sudo sfd --p /path/ /path2/file.file --o 100 --s --log`
 
 >To run the utility, use:
 
@@ -98,11 +124,8 @@ optional arguments:
 git clone https://github.com/mysmarthub/sfd.git
 cd sfd
 pip install -r requirements
-python sfd/sfdstart.py -h
+python sfd/sfd.py --p /path/ /path2/file.file --o 100 --s --log
 ```
-
->Be careful! When adding folders, all files from all subfolders 
-will be added recursively
 
 
 Links:
