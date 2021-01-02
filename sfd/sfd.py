@@ -1,10 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # -----------------------------------------------------------------------------
+# Licensed under the terms of the BSD 3-Clause License
+# (see LICENSE for details)
 # Copyright © 2020 Aleksandr Suvorov
-# Licensed under the terms of the MIT License
-# (see LICENSE.txt for details)
-# -----------------------------------------------------------------------------
-# Github: https://github.com/mysmarthub/sfd/
 # -----------------------------------------------------------------------------
 """Smart Console utility for destroying (shred), zeroing, and deleting files."""
 import argparse
@@ -18,7 +17,7 @@ from mycleaner import cleaner
 
 
 COLUMNS, _ = shutil.get_terminal_size()
-VERSION = '0.0.5'
+VERSION = '0.0.6'
 
 
 def check_path(path):
@@ -45,8 +44,10 @@ def status_print(status):
 def work(obj_dict, method=1, log=False, shreds=30):
     my_cleaner = cleaner.Cleaner()
     my_cleaner.shreds = shreds
+    path_count = 0
     for obj in obj_dict.values():
-        print(f'Working with: {obj.path}'.center(COLUMNS, '='))
+        path_count += 1
+        print(f'{path_count} Working with: {obj.path}'.center(COLUMNS, '='))
         count = 0
         for file in obj.get_files():
             count += 1
@@ -85,7 +86,7 @@ def createParser():
     parser = argparse.ArgumentParser(
         description='Smart Console utility for destroying (shred), zeroing, and deleting files',
         prog='Smart Files Destroyer',
-        epilog="""myhackband@ya.ru""",
+        epilog="""https://github.com/mysmarthub/sfd""",
     )
     parser.add_argument('--p', '--paths', nargs='+', help='Paths to files and folders')
     parser.add_argument('--o', '--overwrites', type=int, help='Number of overwrites', default=0)
@@ -155,7 +156,7 @@ def get_args(func):
 
     def deco():
         print(f'Smart Files Destroyer {VERSION}'.center(COLUMNS, '='))
-        print('Aleksandr Suvorov | https://githib.com/mysmarthub/sfd '.center(COLUMNS, '-'))
+        print(' Aleksandr Suvorov | https://githib.com/mysmarthub/sfd '.center(COLUMNS, '-'))
         print('Donate: 4048 4150 0400 5852 | 4276 4417 5763 7686'.center(COLUMNS, ' '))
         print('Utility for mashing, zeroing, deleting files'.center(COLUMNS, '='))
         func(namespace)
