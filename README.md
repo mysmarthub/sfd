@@ -17,7 +17,7 @@ Smart Files Destroyer
 [![GitHub all releases](https://img.shields.io/github/downloads/mysmarthub/sfd/total?label=github%20downloads)](https://github.com/mysmarthub/sfd/)
 [![GitHub Repo stars](https://img.shields.io/github/stars/mysmarthub/sfd?style=social)](https://github.com/mysmarthub/sfd/)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/mysmarthub/sfd)](https://github.com/mysmarthub/sfd/)
-![GitHub](https://img.shields.io/github/license/mysmarthub/sfd)
+![GitHub](https://img.shields.io/github/license/mysmarthub/sfd?style=flat-square)
 ---
 [![Download Smart Files Destroyer](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/smart-files-destroyer/files/latest/download)
 
