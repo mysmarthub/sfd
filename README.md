@@ -6,12 +6,15 @@ Smart Files Destroyer
 
 >Developer: Aleksandr Suvorov
 
+>BSD 3-Clause License
+
+----
+
 [![PyPI](https://img.shields.io/pypi/v/sfd)](https://pypi.org/project/sfd)
 [![PyPI - Format](https://img.shields.io/pypi/format/sfd)](https://pypi.org/project/sfd)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/sfd?label=pypi%20downloads)](https://pypi.org/project/sfd)
 [![GitHub repo size](https://img.shields.io/github/repo-size/mysmarthub/sfd)](https://github.com/mysmarthub/sfd/)
 [![GitHub all releases](https://img.shields.io/github/downloads/mysmarthub/sfd/total?label=github%20downloads)](https://github.com/mysmarthub/sfd/)
-[![GitHub](https://img.shields.io/github/license/mysmarthub/sfd)](https://github.com/mysmarthub/sfd/)
 [![GitHub Repo stars](https://img.shields.io/github/stars/mysmarthub/sfd?style=social)](https://github.com/mysmarthub/sfd/)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/mysmarthub/sfd)](https://github.com/mysmarthub/sfd/)
 
