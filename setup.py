@@ -3,7 +3,8 @@
 # -----------------------------------------------------------------------------
 # Licensed under the terms of the BSD 3-Clause License
 # (see LICENSE for details)
-# Copyright © 2020 Aleksandr Suvorov
+# https://github.com/mysmarthub
+# Copyright © 2020-2021 Aleksandr Suvorov
 # -----------------------------------------------------------------------------
 from setuptools import setup, find_packages
 from os.path import join, dirname
@@ -12,7 +13,7 @@ PACKAGE = "sfd"
 VERSION = __import__(PACKAGE).__version__
 AUTHOR = __import__(PACKAGE).__author__
 AUTHOR_EMAIL = "myhackband@yandex.ru"
-DESCRIPTION = "Smart Files Destruction - console utilities for destruction, zeroing, deleting files." \
+DESCRIPTION = "Smart Files Destroyer - console utility for destroying (shred), zeroing, and deleting files" \
               " Aleksandr Suvorov | https://github.com/mysmarthub/sfd | " \
               "Donate: 4048 4150 0400 5852 | 4276 4417 5763 7686"
 NAME = "sfd"

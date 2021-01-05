@@ -6,7 +6,15 @@ Smart Files Destroyer
 
 >Developer: Aleksandr Suvorov
 
->BSD 3-Clause License
+```
+-----------------------------------------------------------------------------
+Licensed under the terms of the BSD 3-Clause License
+(see LICENSE for details)
+https://github.com/mysmarthub
+Copyright © 2020-2021 Aleksandr Suvorov
+-----------------------------------------------------------------------------
+
+```
 
 ----
 
