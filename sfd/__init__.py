@@ -6,6 +6,9 @@
 # https://github.com/mysmarthub
 # Copyright © 2020-2021 Aleksandr Suvorov
 # -----------------------------------------------------------------------------
-"""Smart Console utility for destroying (shred), zeroing, and deleting files."""
-__version__ = '0.0.7'
+"""CLI utility for destroying, zeroing, and deleting files."""
+__version__ = '1.0.0'
 __author__ = 'Aleksandr Suvorov'
+__url__ = 'https://githib.com/mysmarthub/sfd'
+__donate__ = 'Donate: 4048 4150 0400 5852 | 4276 4417 5763 7686'
+__copyright__ = 'Copyright © 2020-2021 Aleksandr Suvorov'

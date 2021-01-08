@@ -1,10 +1,9 @@
 Smart Files Destroyer
 ===
     
->Smart Console utility for destroying (shred), 
-> zeroing, and deleting files.
+>CLI utility for destroying, zeroing, and deleting files.
 
->Developer: Aleksandr Suvorov
+>Author and developer: Aleksandr Suvorov
 
 ```
 -----------------------------------------------------------------------------
@@ -69,41 +68,39 @@ will be added recursively.
 > if you specify all the arguments, then after 
 > starting the utility will start working without 
 > confirmation, so be very careful!
-> 
-> The utility can be run with or without command 
-> line arguments to allow you to select the desired parameters manually.
-> 
-> Run the utility without arguments and follow the instructions below.
-> 
-> To run the utility with arguments, 
-> if you specify all the arguments, then after 
-> starting the utility will start working without confirmation, 
-> so be very careful! If you do not specify 
-> one of the important arguments such as the path, 
-> the number of mashing or the method to work with, 
-> the utility will start, but will prompt you to enter 
-> the necessary parameters.
 
 ---
 
 Help:
 ---
-```
-    usage: Smart Files Destroyer [-h] [--p P [P ...]] [--o O] [--s] [--z] [--d] [--log] [--version]
-    
-    Smart Console utility for destroying (shred), zeroing, and deleting files
-    
-    optional arguments:
-      -h, --help            show this help message and exit
-      --p P [P ...], --paths P [P ...]
-                            Paths to files and folders
-      --o O, --overwrites O
-                            Number of overwrites
-      --s                   Shredding and delete file
-      --z                   Zeroing no delete file
-      --d                   Zeroing and delete file
-      --log                 Save errors log
-      --version             Program version
+```text
+Usage: sfd [OPTIONS]
+
+  Smart Files Destroyer - CLI utility for destroying, zeroing, and deleting
+  files.
+
+Options:
+  --paths, --p TEXT   Paths to a files or folder with files, all attached
+                      files and folders will be taken into account! Be
+                      extremely careful and attentive when adding.
+
+  --num, --n INTEGER  Number of overwrites. If you use the shred method, each
+                      file will be overwritten the specified number of times
+                      before being destroyed.
+
+  --dirs, --d         Delete the folders?
+  --yes, --y          Auto Mode, be very careful with this parameter, if you
+                      specify it, the program will start and start destroying
+                      files automatically.
+
+  --shred             Overwrites random data, renames and deletes the file,
+                      used by default.
+
+  --zero              Resets and does not delete the file.
+  --del               Resets and deletes the file.
+  --version, --v      Displays the version of the program and exits.
+  --help              Show this message and exit.
+
 
 ```
 
@@ -119,14 +116,14 @@ Help:
 
 >Use:
 
-`sfd --p /path/ /path2/file.file --o 100 --s --log`
+`sfd --paths /path/ --paths /path2/ --num 100 --dirs --yes --shred`
 
 >To delete some files, you may need administrator rights. 
 > To do this, install the package with the command:
 > 
 >`sudo pip install sfd`
 > 
->`sudo sfd --p /path/ /path2/file.file --o 100 --s --log`
+>`sudo sfd --paths /path/ --paths /path2/ --num 100 --dirs --yes --shred`
 
 >To run the utility, use:
 
@@ -134,7 +131,7 @@ Help:
 git clone https://github.com/mysmarthub/sfd.git
 cd sfd
 pip install -r requirements
-python sfd/sfd.py --p /path/ /path2/file.file --o 100 --s --log
+python sfd/sfd.py --paths /path/ --paths /path2/ --num 100 --dirs --yes --shred
 ```
 
 
