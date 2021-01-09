@@ -127,7 +127,13 @@ Options:
 
 >Git Clone:
 
-`git clone https://github.com/mysmarthub/sfd/`
+`git clone https://github.com/mysmarthub/sfd.git`
+
+`cd sfd`
+
+`pip install -r requirements.txt`
+
+`python sfd/sfd.py --paths /path1/ --p /path2/ --p /pathN.../ --n 100 --d --yes --shred`
 
 ---
 
