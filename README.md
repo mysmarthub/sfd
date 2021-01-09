@@ -48,6 +48,23 @@ https://yoomoney.ru/to/4100115206129186
 https://paypal.me/myhackband
 
 ---
+Termux support:
+---
+
+> You can easily use the utility with Termux 
+> on mobile phones and tablets.
+
+    1. Download and install Termux https://play.google.com/store/apps/details?id=com.termux&hl=ru&gl=US
+    2. pkg install python
+    3. pip install sfd
+    4. sfd --help
+    5. To access the file storage: 
+        termux-setup-storage
+        cd ~/storage
+    
+    Files are destroyed even without root access and sudo.
+    Read more about how to use the utility.
+---
 
 Description:
 ---
