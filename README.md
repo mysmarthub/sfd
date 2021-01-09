@@ -121,9 +121,15 @@ Options:
 
 ```
 
+---
+Use:
+---
+
 >Package installation:
 
 `pip install sfd`
+
+`sfd --paths /path/ --paths /path2/ --num 100 --dirs --yes --shred`
 
 >Git Clone:
 
@@ -133,31 +139,29 @@ Options:
 
 `pip install -r requirements.txt`
 
-`python sfd/sfd.py --paths /path1/ --p /path2/ --p /pathN.../ --n 100 --d --yes --shred`
+`python sfd/sfd.py --paths /path/ --p /path2/ --n 100 --d --yes --shred`
+
 
 ---
 
->Use:
-
-`sfd --paths /path/ --paths /path2/ --num 100 --dirs --yes --shred`
-
 >To delete some files, you may need administrator rights. 
-> To do this, install the package with the command:
-> 
->`sudo pip install sfd`
-> 
->`sudo sfd --paths /path/ --paths /path2/ --num 100 --dirs --yes --shred`
+To do this, install the package with the command:
 
->To run the utility, use:
+`sudo pip install sfd`
 
-```
-git clone https://github.com/mysmarthub/sfd.git
-cd sfd
-pip install -r requirements
-python sfd/sfd.py --paths /path/ --paths /path2/ --num 100 --dirs --yes --shred
-```
+`sudo sfd --paths /path/ --paths /path2/ --num 100 --dirs --yes --shred`
 
+>or:
 
+`git clone https://github.com/mysmarthub/sfd.git`
+
+`cd sfd`
+
+`sudo pip install -r requirements.txt`
+
+`sudo python sfd/sfd.py --paths /path/ --p /path2/ --n 100 --d --yes --shred`
+
+---
 Links:
 ---
 >[GitHub](https://github.com/mysmarthub/sfd)
