@@ -38,14 +38,11 @@ Copyright © 2020-2021 Aleksandr Suvorov
 
 Help the project financially:
 ---
->Yandex Money:
-https://yoomoney.ru/to/4100115206129186
+>[Yandex Money](https://yoomoney.ru/to/4100115206129186)
 
     Visa:    4048 4150 0400 5852
 
-    Sberbank Russia: 4276 4417 5763 7686
-
-https://paypal.me/myhackband
+>[Paypal](https://paypal.me/myhackband)
 
 ---
 Termux support:
@@ -90,6 +87,16 @@ will be added recursively.
 
 Help:
 ---
+
+    Pass the path/paths to the file/folder as 
+    parameters at startup using --p, specify the 
+    number of overwrites for the file using --n 
+    (30 by default), specify --d if you want the 
+    utility to delete empty folders after destroying 
+    files, use --y to run the program automatically, 
+    use --shred for destructions (used by default), 
+    --zero for zeroing, --del for zeroing and deleting.
+
 ```text
 Usage: sfd [OPTIONS]
 

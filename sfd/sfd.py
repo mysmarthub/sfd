@@ -119,7 +119,19 @@ def print_version(ctx, param, value):
               help='Displays the version of the program and exits.',
               expose_value=False, is_eager=True)
 def main(paths, num, dirs, method, yes):
-    """Smart Files Destroyer - CLI utility for destroying, zeroing, and deleting files."""
+    """Smart Files Destroyer - CLI utility for destroying, zeroing, and deleting files.
+
+    - Console utility for destruction,
+    zeroing, and deleting files.
+
+    - The utility allows you to destruct files,
+    reset them to zero and delete them,
+    for complete or partial difficulty in
+    restoring them after deletion.
+
+    - Be careful! When adding folders, all files from all subfolders
+    will be added recursively.
+    """
     logo_start()
     paths = [path for path in set(paths) if os.path.exists(path)]
     if paths:

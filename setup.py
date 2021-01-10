@@ -16,8 +16,7 @@ DONATE = __import__(PACKAGE).__donate__
 AUTHOR_EMAIL = "myhackband@yandex.ru"
 URL = __import__(PACKAGE).__url__
 DESCRIPTION = "Smart Files Destroyer - console utility for destroying (shred), zeroing, and deleting files" \
-              " Aleksandr Suvorov | https://github.com/mysmarthub/sfd | " \
-              "Donate: 4048 4150 0400 5852 | 4276 4417 5763 7686"
+              " Aleksandr Suvorov | https://github.com/mysmarthub | https://yoomoney.ru/to/4100115206129186"
 NAME = "sfd"
 LICENSE = 'BSD 3-Clause License'
 LONG_DESCRIPTION = open(join(dirname(__file__), 'README.md')).read()
