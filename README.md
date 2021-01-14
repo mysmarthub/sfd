@@ -1,9 +1,10 @@
 Smart Files Destroyer
 ===
+---
     
->CLI utility for destroying, zeroing, and deleting files.
+> CLI utility for destroying, zeroing, and deleting files.
 
->Author and developer: Aleksandr Suvorov
+> Author and developer: Aleksandr Suvorov
 
 ```
 -----------------------------------------------------------------------------
@@ -22,9 +23,15 @@ Copyright © 2020-2021 Aleksandr Suvorov
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/sfd?label=pypi%20downloads)](https://pypi.org/project/sfd)
 [![GitHub repo size](https://img.shields.io/github/repo-size/mysmarthub/sfd)](https://github.com/mysmarthub/sfd/)
 [![GitHub all releases](https://img.shields.io/github/downloads/mysmarthub/sfd/total?label=github%20downloads)](https://github.com/mysmarthub/sfd/)
-[![GitHub Repo stars](https://img.shields.io/github/stars/mysmarthub/sfd?style=social)](https://github.com/mysmarthub/sfd/)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/mysmarthub/sfd)](https://github.com/mysmarthub/sfd/)
 ![GitHub](https://img.shields.io/github/license/mysmarthub/sfd?style=flat-square)
+[![GitHub Repo stars](https://img.shields.io/github/stars/mysmarthub/sfd?style=social)](https://github.com/mysmarthub/sfd/)
+![GitHub watchers](https://img.shields.io/github/watchers/mysmarthub/sfd?style=social)
+![GitHub forks](https://img.shields.io/github/forks/mysmarthub/sfd?style=social)
+[![mysmarthub@ya.ru](https://img.shields.io/static/v1?label=email&message=mysmarthub@ya.ru&color=blue)](mailto:mysmarthub@ya.ru)
+[![Donate](https://img.shields.io/static/v1?label=donate&message=paypal&color=green)](https://paypal.me/myhackband)
+[![Donate](https://img.shields.io/static/v1?label=donate&message=yandex&color=yellow)](https://yoomoney.ru/to/4100115206129186)
+
 ---
 [![Download Smart Files Destroyer](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/smart-files-destroyer/files/latest/download)
 
@@ -88,43 +95,53 @@ will be added recursively.
 Help:
 ---
 
-    Pass the path/paths to the file/folder as 
-    parameters at startup using --p, specify the 
-    number of overwrites for the file using --n 
-    (30 by default), specify --d if you want the 
-    utility to delete empty folders after destroying 
-    files, use --y to run the program automatically, 
-    use --shred for destructions (used by default), 
+    Pass the path/file path/folder
+    parameters at startup, enter
+    the number of rewrites of the file by using the-n
+    (30 by default), enter -dd If you want
+    to utility delete empty folder after the destruction
+    files, use -y to automatically launch the program
+    use --shred for destruction (this is the default),
     --zero for zeroing, --del for zeroing and deleting.
 
 ```text
-Usage: sfd [OPTIONS]
+Usage: sfd [OPTIONS] [PATHS]...
 
   Smart Files Destroyer - CLI utility for destroying, zeroing, and deleting
   files.
 
+  PATHS - these are the paths to files and folders with files separated by a
+  space, if there are spaces in the path name, escape them, or put them in
+  quotation marks.
+
+  - Console utility for destruction, zeroing, and deleting files.
+
+  - The utility allows you to destruct files, reset them to zero and delete
+  them, for complete or partial difficulty in restoring them after deletion.
+
+  - Be careful! When adding folders, all files from all subfolders will be
+  added recursively.
+
 Options:
-  --paths, --p TEXT   Paths to a files or folder with files, all attached
-                      files and folders will be taken into account! Be
-                      extremely careful and attentive when adding.
+  -v, --version      Displays the version of the program and exits.
+  -y, --yes          Auto Mode, be very careful with this parameter, if you
+                     specify it, the program will start and start destroying
+                     files automatically.
 
-  --num, --n INTEGER  Number of overwrites. If you use the shred method, each
-                      file will be overwritten the specified number of times
-                      before being destroyed.
+  -n, --num INTEGER  Number of overwrites. If you use the shred method, each
+                     file will be overwritten the specified number of times
+                     before being destroyed.
 
-  --dirs, --d         Delete the folders?
-  --yes, --y          Auto Mode, be very careful with this parameter, if you
-                      specify it, the program will start and start destroying
-                      files automatically.
+  --shred            Overwrites random data, renames and deletes the file,
+                     used by default.
 
-  --shred             Overwrites random data, renames and deletes the file,
-                      used by default.
+  --zero             Resets and does not delete the file.
+  --del              Resets and deletes the file.
+  -dd, --del-dirs    Delete the folders?
+  -t, --test         Working in test mode, files and folders will not be
+                     destroyed.
 
-  --zero              Resets and does not delete the file.
-  --del               Resets and deletes the file.
-  --version, --v      Displays the version of the program and exits.
-  --help              Show this message and exit.
-
+  --help             Show this message and exit.
 
 ```
 
@@ -132,13 +149,17 @@ Options:
 Use:
 ---
 
->Package installation:
+> Package installation:
 
 `pip install sfd`
 
-`sfd --paths /path/ --paths /path2/ --num 100 --dirs --yes --shred`
+Use:
+----
 
->Git Clone:
+`sfd /path/ /path2/ /path/file.file --shred -n 100 -dd -y`
+
+Git Clone:
+----------
 
 `git clone https://github.com/mysmarthub/sfd.git`
 
@@ -146,19 +167,17 @@ Use:
 
 `pip install -r requirements.txt`
 
-`python sfd/sfd.py --paths /path/ --p /path2/ --n 100 --d --yes --shred`
+`python sfd/sfd.py /path/ /path2/ /path/file.file --shred -n 100 -dd -y`
 
-
----
 
 >To delete some files, you may need administrator rights. 
-To do this, install the package with the command:
+> To do this, install the package with the command:
 
 `sudo pip install sfd`
 
-`sudo sfd --paths /path/ --paths /path2/ --num 100 --dirs --yes --shred`
+`sudo sfd /path/ /path2/ /path/file.file --shred -n 100 -dd -y`
 
->or:
+or:
 
 `git clone https://github.com/mysmarthub/sfd.git`
 
@@ -166,7 +185,7 @@ To do this, install the package with the command:
 
 `sudo pip install -r requirements.txt`
 
-`sudo python sfd/sfd.py --paths /path/ --p /path2/ --n 100 --d --yes --shred`
+`sudo python sfd/sfd.py /path/ /path2/ /path/file.file --shred -n 100 -dd -y`
 
 ---
 Links:
@@ -190,5 +209,5 @@ Disclaimer of liability:
 
 Support:
 ---
-    Email: myhackband@yandex.ru
+    Email: mysmarthub@ya.ru
     Copyright © 2020 Aleksandr Suvorov

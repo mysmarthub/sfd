@@ -69,6 +69,6 @@ setup(
     keywords=KEYWORDS,
     entry_points={
         'console_scripts':
-            ['sfd = sfd.sfd:main']
+            ['sfd = sfd.sfd:cli']
         }
 )
