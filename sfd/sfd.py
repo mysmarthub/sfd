@@ -8,197 +8,234 @@
 # -----------------------------------------------------------------------------
 """CLI utility for destroying, zeroing, and deleting files"""
 import os
-import shutil
 
 import click
 
 from mycleaner import smart, cleaner
 
-__version__ = '1.0.1'
+__title__ = 'Smart Files Destroyer'
+__version__ = '1.0.2'
 __author__ = 'Aleksandr Suvorov'
-__url__ = 'https://githib.com/mysmarthub/sfd'
+__url__ = 'https://githib.com/mysmarthub/'
 __donate__ = 'Donate: https://yoomoney.ru/to/4100115206129186'
+__paypal__ = 'https://paypal.me/myhackband'
 __copyright__ = 'Copyright © 2020-2021 Aleksandr Suvorov'
 
 
-def smart_print(text='', char='-'):
-    columns, _ = shutil.get_terminal_size()
-    print(f'{text}'.center(columns, char))
+class SmartCleaner:
+    """Managing the operation of the utility"""
+    def __init__(self, paths: set, method: str = 'destroy', num=30, del_dirs=False):
+        """
+        When creating an object, it takes as parameters:
 
+        :param paths: <set> a variety of paths to files and folders
+        :param method: <str> method to work with - currently available [destroy, zeroing, delete, test]
+        :param method: <int> number of overwrites of a file before deleting it
+        :param method: <bool> Delete folders True - empty folders will be deleted - False - will not be deleted
+        """
+        self.__paths = paths
+        self.method = method
+        self.num = num
+        self.del_dirs = del_dirs
+        self.__count = 0
 
-def get_files_gen(path):
-    if path and os.path.exists(path):
-        for p, _, files in os.walk(path):
-            for f in files:
-                yield os.path.join(p, f)
+    def prompt_path(self):
+        """Getting path input from the user and adding them"""
+        while 1:
+            user_path = click.prompt('Enter the path (0 - back)')
+            smart.smart_print()
+            if user_path == '0':
+                break
+            if self.add_path(user_path):
+                print('Path added successfully!')
+            else:
+                print('Error! Invalid path or path was added earlier!')
 
+    def prompt_remove_path(self):
+        """User's choice of paths to exclude"""
+        while 1:
+            path_num_list = {n: path for n, path in enumerate(self.__paths, 1)}
+            if not path_num_list:
+                click.echo('There is no way to remove...')
+                break
+            click.echo('Added paths: ')
+            smart.smart_print()
+            for n, path in path_num_list.items():
+                print(f'{n}. Path{path}')
+            user_input = click.prompt('Enter the path number to delete (0 - back)', type=int)
+            smart.smart_print()
+            if user_input == 0:
+                break
+            if user_input not in path_num_list:
+                print('Input Error!')
+            else:
+                if self.remove_path(path_num_list[user_input]):
+                    print('The path was successfully deleted!')
+                else:
+                    print('Error while deleting route!')
 
-def get_folders_gen(path):
-    if path and os.path.exists(path):
-        for p, folders, _ in os.walk(path):
-            for f in folders:
-                yield os.path.join(p, f)
+    def add_path(self, path: str) -> bool:
+        """Adding a path"""
+        if path not in self.__paths and os.path.exists(path):
+            self.__paths.add(path)
+            return True
+        return False
 
+    def remove_path(self, path: str) -> bool:
+        """Deleting a path"""
+        if os.path.exists(path) and path in self.__paths:
+            self.__paths.remove(path)
+            return True
+        return False
 
-def get_count_files(path: str) -> int:
-    """
-    Counting the number of files recursively nested in a directory
+    def show_info(self):
+        """Displaying paths, the number of folders and files they contain"""
+        if self.__paths:
+            for n, path in enumerate(self.__paths, 1):
+                msg = f'{n} Path[{path}]' \
+                      f' Files[{smart.get_count_files(path)}] ' \
+                      f'Folders[{smart.get_count_dirs(path)}]'
+                print(msg)
+        else:
+            print('There is no way to display...')
 
-    :param path: <str> Path to the directory
-    :return: <int> Counting the number of files recursively nested in a directory
-    """
-    if os.path.isfile(path):
-        return 1
-    elif os.path.isdir(path):
-        return sum([len(files) for _, _, files in os.walk(path)])
-    else:
-        return 0
+    def show(self):
+        """Displays all folders and files that are contained in the added paths"""
+        if self.__paths:
+            for path in self.__paths:
+                click.echo()
+                click.echo(f'Path[{path}]')
+                smart.smart_print()
+                if os.path.isdir(path):
+                    click.echo('Folders:')
+                    for n, folder in enumerate(smart.get_folders_gen(path), 1):
+                        print(f'{n} Path[{folder}]')
+                    click.echo()
+                    click.echo('Files:')
+                    for n, file in enumerate(smart.get_files_gen(path), 1):
+                        print(f'{n} Path[{file}]')
+        else:
+            print('There is no way to display...')
 
+    def update_method(self):
+        """Getting user input to change the way the utility works"""
+        while 1:
+            method_dict = {n: m for n, m in enumerate(['destroy', 'zeroing', 'delete', 'test'], 1)}
+            print('0. Cancel')
+            for n, m in method_dict.items():
+                msg = f'{n}: {m}'
+                if self.method == m:
+                    msg += ' [x]'
+                print(msg)
+            user_method = click.prompt(f'Select a method', type=int)
+            if not user_method:
+                break
+            smart.smart_print()
+            if user_method not in method_dict:
+                print('Input Error!')
+                continue
+            else:
+                self.method = method_dict[user_method]
+                print(f'The method is successfully changed to {self.method}!')
+            break
 
-def get_count_dirs(path: str) -> int:
-    """
-    Counting the number of folder recursively nested in a directory
+    @property
+    def paths(self):
+        """All the way"""
+        return self.__paths
 
-    :param path: <str> Path to the directory
-    :return: <int> Counting the number of folders recursively nested in a directory
-    """
-    if os.path.isdir(path):
-        return sum([len(folders) for _, folders, _ in os.walk(path)])
-    else:
-        return 0
+    @property
+    def count_paths(self):
+        """Number of paths"""
+        return len(self.__paths)
+
+    def clear(self):
+        """Clearing data"""
+        self.__paths.clear()
+        self.__count = 0
+
+    def __work(self, obj, file):
+        """Destroying, zeroing, and deleting files"""
+        if self.method == 'destroy':
+            status = obj.shred_file(file)
+        elif self.method == 'zeroing':
+            status = obj.zero_file(file)
+        elif self.method == 'delete':
+            status = obj.del_file(file)
+        else:
+            status = True
+        return status
+
+    def __str__(self):
+        return f'Paths[{self.count_paths}] Method[{self.method}]'
+
+    def start(self):
+        """Working with paths destroying, zeroing, and deleting files"""
+        if self.__paths:
+            smart.smart_print()
+            click.echo(f'The selected method: {self.method}')
+            count_files = 0
+            count_dirs = 0
+            obj_data = smart.DataObj()
+            smart_cleaner = cleaner.Cleaner(shreds=self.num)
+            for path in self.__paths:
+                obj_data.add_path(path)
+            for file in obj_data.get_files():
+                count_files += 1
+                smart.smart_print()
+                print(f'[{count_files}][{self.method}] File: {file}')
+                status = self.__work(smart_cleaner, file)
+                smart.print_status(status)
+            smart.smart_print()
+            if self.del_dirs:
+                for path in obj_data.get_dirs():
+                    print(f'Delete folder: {path}')
+                    if self.method != 'test':
+                        status = smart_cleaner.del_dir(path)
+                    else:
+                        status = True
+                    smart.print_status(status)
+                    count_dirs += 1
+                smart.smart_print()
+            print(f'The work has been completed:\n'
+                  f'Processed files: [{count_files - len(smart_cleaner.errors)}]\n'
+                  f'Deleted folders: [{count_dirs}]\n'
+                  f'Errors: [{len(smart_cleaner.errors)}]')
+            if smart_cleaner.errors:
+                smart.smart_print(f' Errors: [{len(smart_cleaner.errors)}]')
+                for err in smart_cleaner.errors:
+                    print(err)
+            self.clear()
+        else:
+            print('There is no way to work...')
 
 
 def logo_start():
-    smart_print('', '*')
-    smart_print(f' Smart Files Destroyer ', '=')
-    smart_print('', '*')
-    smart_print(' CLI utility for destroying, zeroing, and deleting files ', ' ')
-    smart_print()
+    """Output of the welcome logo"""
+    smart.smart_print('', '*')
+    smart.smart_print(f'My Cleaner v{__version__}', '=')
+    smart.smart_print('', '*')
+    smart.smart_print('CLI utility for destroying, zeroing, and deleting files', ' ')
 
 
 def logo_finish():
-    smart_print('', '=')
-    smart_print(f' {__author__} | {__url__} ', ' ')
-    smart_print(f'{__donate__}', ' ')
-    smart_print('The program is complete', '-')
+    """Output of the completion logo"""
+    click.echo()
+    click.echo('Exit...')
+    smart.smart_print('The program is complete', '-')
+    smart.smart_print(f'{__url__}', ' ')
+    smart.smart_print(f'{__donate__}', ' ')
+    smart.smart_print(f'{__paypal__}', ' ')
+    smart.smart_print(f'{__copyright__}', ' ')
+    smart.smart_print('', '=')
 
 
-def paths_print(paths):
-    print('Added paths...')
-    print('Counting files and folders...')
-    count = 0
-    for path in paths:
-        count += 1
-        smart_print()
-        print(f'[{count}]: {path} | Folders[{get_count_dirs(path)}] | Files[{get_count_files(path)}]')
-    smart_print()
-
-
-def get_action(paths):
-    while 1:
-        count = 0
-        print()
-        print('To continue, select an action: ')
-        smart_print()
-        print('1. Get started')
-        print('2. Show files')
-        print('3. Show folders')
-        print('4. Count files and folders')
-        print('0. Exit')
-        smart_print()
-        user_input = click.prompt('Enter: ', type=int)
-        if user_input == 1:
-            return True
-        elif user_input == 2:
-            for path in paths:
-                smart_print()
-                print(f'    {path}:')
-                for file in get_files_gen(path):
-                    count += 1
-                    print(f'{count} [{file}]')
-        elif user_input == 3:
-            for path in paths:
-                smart_print()
-                print(f'    {path}:')
-                for folder in get_folders_gen(path):
-                    count += 1
-                    print(f'{count} [{folder}]')
-        elif user_input == 4:
-            paths_print(paths)
-        else:
-            return False
-
-
-def get_paths():
-    paths = set()
-    while 1:
-        smart_print()
-        print('Path entry mode. (0 - cancel)')
-        path = click.prompt('Enter the path: ')
-        if os.path.exists(path):
-            paths.add(path)
-            print('The path is added!')
-        else:
-            if path == '0':
-                return paths
-            else:
-                print('There is no path!')
-                continue
-
-
-def print_version(ctx, param, value):
+def print_version(ctx, value):
+    """Print Version"""
     if not value or ctx.resilient_parsing:
         return
-    click.echo(f'Smart Files Destroyer {__version__} | {__copyright__}')
+    click.echo(f'{__title__} {__version__} | {__copyright__}')
     ctx.exit()
-
-
-def print_status(status):
-    if status:
-        print('[Successfully!]')
-    else:
-        print('[Error!]')
-
-
-def start(paths, num=30, method='destroy', del_dirs=False, test=False):
-    count_files = 0
-    count_dirs = 0
-    obj_data = smart.DataObj()
-    my_cleaner = cleaner.Cleaner(shreds=num)
-    for path in paths:
-        obj_data.add_path(path)
-    for file in obj_data.get_files():
-        count_files += 1
-        smart_print()
-        print(f'[{count_files}][{method}] File: {file}')
-        if not test:
-            if method == 'destroy':
-                status = my_cleaner.shred_file(file)
-            elif method == 'zeroing':
-                status = my_cleaner.zero_file(file)
-            else:
-                status = my_cleaner.del_file(file)
-        else:
-            status = True
-        print_status(status)
-    smart_print()
-    if del_dirs:
-        for path in obj_data.get_dirs():
-            print(f'Delete folder: {path}')
-            if not test:
-                status = my_cleaner.del_dir(path)
-            else:
-                status = True
-            print_status(status)
-        smart_print()
-    print(f'The work has been completed:\n'
-          f'Processed files: [{count_files - len(my_cleaner.errors)}]\n'
-          f'Deleted folders: [{count_dirs}]\n'
-          f'Errors: [{len(my_cleaner.errors)}]')
-    if my_cleaner.errors:
-        smart_print(f' Errors: [{len(my_cleaner.errors)}]')
-        for err in my_cleaner.errors:
-            print(err)
 
 
 @click.command()
@@ -215,20 +252,20 @@ def start(paths, num=30, method='destroy', del_dirs=False, test=False):
               help='Number of overwrites. If you use the shred method, '
                    'each file will be overwritten the specified number of '
                    'times before being destroyed.')
-@click.option('--shred', 'method',
+@click.option('--shred', '-s', 'method',
               flag_value='destroy',
               default=True,
               help='Overwrites random data, renames and deletes the file, used by default.')
-@click.option('--zero', 'method', flag_value='zeroing', help='Resets and does not delete the file.')
-@click.option('--del', 'method', flag_value='delete', help='Resets and deletes the file.')
+@click.option('--zero', '-z', 'method', flag_value='zeroing', help='Resets and does not delete the file.')
+@click.option('--del', '-d', 'method', flag_value='delete', help='Resets and deletes the file.')
+@click.option('--test', '-t', 'method', flag_value='test',
+              help='The test method, files and folders will remain unchanged.')
 @click.option('--del-dirs', '-dd',
               is_flag=True,
               help='Delete the folders?')
-@click.option('--test', '-t',
-              is_flag=True,
-              help='Working in test mode, files and folders will not be destroyed.')
-def cli(paths, yes, num, method, del_dirs, test):
-    """Smart Files Destroyer - CLI utility for destroying, zeroing, and deleting files.
+def cli(paths, yes, num, method, del_dirs):
+    """
+    Smart Files Destroyer - CLI utility for destroying, zeroing, and deleting files.
 
     PATHS - these are the paths to files and folders with files separated by a space,
     if there are spaces in the path name, escape them, or put them in quotation marks.
@@ -243,24 +280,54 @@ def cli(paths, yes, num, method, del_dirs, test):
 
     - Be careful! When adding folders, all files from all subfolders
     will be added recursively.
+
+    -Use:
+    mycleaner /path1 /path2 /pathN/file.file --shred -n 30 -dd -y
+
+    https://github.com/mysmarthub/sfd
+    mysmarthub@ya.ru
     """
+    work = True
     logo_start()
-    if test:
-        msg = f'The selected method: [Test mode]'
-    else:
-        msg = f'The selected method: [{method}]'
-    click.echo(msg)
-    paths = set(paths) if paths else get_paths()
-    click.echo(f'Added paths: [{len(paths)}]')
-    smart_print()
-    for path in paths:
-        click.echo(path)
-    smart_print()
-    action_status = True if yes else get_action(paths)
-    if action_status:
-        start(paths=paths, num=num, method=method, test=test, del_dirs=del_dirs)
-    else:
-        print('Exit...')
+    my_cleaner = SmartCleaner(paths=set(paths), method=method, num=num, del_dirs=del_dirs)
+    if not yes or not my_cleaner.paths:
+        while 1:
+            smart.smart_print()
+            click.echo(f'Main Menu. {my_cleaner}:')
+            smart.smart_print()
+            click.echo(f'0. Exit')
+            click.echo(f'1. Start')
+            click.echo(f'2. Add Path')
+            click.echo(f'3. Remove Path')
+            click.echo(f'4. Information about paths')
+            click.echo(f'5. Show files and folders')
+            click.echo(f'6. To change the method [{my_cleaner.method}]')
+            smart.smart_print()
+            action = click.prompt('Enter', type=int)
+            smart.smart_print()
+            if action == 1:
+                if not my_cleaner.paths:
+                    print("Error! You didn't add a path!")
+                    continue
+                work = True
+                break
+            elif action == 2:
+                my_cleaner.prompt_path()
+            elif action == 3:
+                my_cleaner.prompt_remove_path()
+            elif action == 4:
+                my_cleaner.show_info()
+            elif action == 5:
+                my_cleaner.show()
+            elif action == 6:
+                my_cleaner.update_method()
+            elif action == 0:
+                work = False
+                break
+            else:
+                print('Invalid input!')
+    if work:
+        my_cleaner.start()
     logo_finish()
 
 

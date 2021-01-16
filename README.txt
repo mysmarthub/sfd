@@ -1,34 +1,30 @@
 Smart Files Destroyer
-=============================================================================
-
-CLI utility for destroying, zeroing, and deleting files.
-
+==========
+CLI utility for destroying,
+zeroing, and deleting files.
 Author and developer: Aleksandr Suvorov
-
------------------------------------------------------------------------------
-Licensed under the terms of the BSD 3-Clause License
-(see LICENSE for details)
-https://github.com/mysmarthub
-Copyright © 2020-2021 Aleksandr Suvorov
------------------------------------------------------------------------------
-
+BSD 3-Clause License
 
 Help the project financially:
------------------------------------------------------------------------------
+=============================
 https://yoomoney.ru/to/4100115206129186
-
 Visa:    4048 4150 0400 5852
-
 https://paypal.me/myhackband
 
------------------------------------------------------------------------------
+What's new?
+===========
+The program code has been completely redesigned.
+The interface has been completely changed,
+bugs have been fixed, new features have been added,
+and work has been accelerated.
+
 Termux support:
----------------
+===============
 
 You can easily use the utility with Termux
 on mobile phones and tablets.
 
-    1. Download and install Termux https://play.google.com/store/apps/details?id=com.termux&hl=ru&gl=US
+    1. Install Termux
     2. pkg install python
     3. pip install sfd
     4. sfd --help
@@ -38,12 +34,19 @@ on mobile phones and tablets.
 
     Files are destroyed even without root access and sudo.
     Read more about how to use the utility.
-------------------------------------------------------------------------------
 
 Description:
-------------
-Console utility for destruction,
+============
+Console utilities for destroying,
 zeroing, and deleting files.
+
+With this package, you can develop graphical,
+console , and cross-platform applications to destroy,
+reset data in a file, and delete files
+so that they are difficult or impossible to recover.
+
+You can also use a ready-made console utility for destruction,
+reset and delete files.
 
 The utility allows you to destruct files,
 reset them to zero and delete them,
@@ -53,33 +56,12 @@ restoring them after deletion.
 Be careful! When adding folders, all files from all subfolders
 will be added recursively.
 
-When you run the program with all the parameters,
-all files located at the specified path will be destroyed,
-including those nested in other folders,
-if you specify all the arguments, then after
-starting the utility will start working without
-confirmation, so be very careful!
-
--------------------------------------------------------------------
-
 Help:
------
+=====
 
-    Pass the path/file path/folder
-    parameters at startup, enter
-    the number of rewrites of the file by using the-n
-    (30 by default), enter -dd If you want
-    to utility delete empty folder after the destruction
-    files, use -y to automatically launch the program
-    use --shred for destruction (this is the default),
-    --zero for zeroing, --del for zeroing and deleting.
+Usage: sfd.py [OPTIONS] [PATHS]...
 
-
-============================================================================
-Usage: sfd [OPTIONS] [PATHS]...
-
-  Smart Files Destroyer - CLI utility for destroying, zeroing, and deleting
-  files.
+  Smart Files Destroyer - CLI utility for destroying, zeroing, and deleting files.
 
   PATHS - these are the paths to files and folders with files separated by a
   space, if there are spaces in the path name, escape them, or put them in
@@ -93,6 +75,11 @@ Usage: sfd [OPTIONS] [PATHS]...
   - Be careful! When adding folders, all files from all subfolders will be
   added recursively.
 
+  -Use:
+    sfd /path1 /path2 /pathN/file.file --shred -n 30 -dd -y
+
+  https://github.com/mysmarthub/sfd mysmarthub@ya.ru
+
 Options:
   -v, --version      Displays the version of the program and exits.
   -y, --yes          Auto Mode, be very careful with this parameter, if you
@@ -103,75 +90,95 @@ Options:
                      file will be overwritten the specified number of times
                      before being destroyed.
 
-  --shred            Overwrites random data, renames and deletes the file,
+  -s, --shred        Overwrites random data, renames and deletes the file,
                      used by default.
 
-  --zero             Resets and does not delete the file.
-  --del              Resets and deletes the file.
+  -z, --zero         Resets and does not delete the file.
+  -d, --del          Resets and deletes the file.
+  -t, --test         The test method, files and folders will remain unchanged.
   -dd, --del-dirs    Delete the folders?
-  -t, --test         Working in test mode, files and folders will not be
-                     destroyed.
-
   --help             Show this message and exit.
-
-
-================================================================================
-
 
 Use:
 ====
 
 Package installation:
 ---------------------
+    `pip install sfd`
 
-pip install sfd
+Launch and use the ready-made utility:
+--------------------------------------
+    - After installation, you can run the utility using its name.
+        sfd
 
-Use:
-----
+    - See the help page to understand how to work with the utility
 
-sfd /path/ /path2/ /path/file.file --shred -n 100 -dd -y
+    - After the name, specify the paths to files and folders separated by a space,
+        on some systems if the path contains spaces or others
+        forbidden characters, and the system itself does not escape such a path,
+        either escape such a path or enclose it in quotation marks.
+        sfd /path1 /path2 /pathN/file.file
+
+    - Next, you should specify the method for the utility to work. At the moment
+        there are 4 methods available: --shred, --zero, --del, --test.
+    --shred: [destroy] - overwrites and deletes the file.
+    --zero: [zeroing] - completely destroys the information inside the file,
+        but does not delete the file.
+    --del: [delete] - First applies [zeroing], then deletes the file.
+    --test: [test] - Running the program in test mode, no
+        files or folders will not be deleted
+    sfd /path1 /path2 /pathN/file.file --shred
+
+    - When using the method --shred ([destroy])
+        you can specify the number of file overwrites
+        using the parameter --num 100 или -n 100,
+        with any number separated by a space.
+    sfd /path1 /path2 /pathN/file.file --shred -n 30
+
+    - To delete empty folders after work, use the parameter --del-dirs или -dd
+
+    - You can also run the utility in automatic execution mode
+        (for example, use it to start and run at a certain time
+        using the task scheduler). To do this, you should send an additional message
+        the --yes or-y parameter. Be careful using this parameter,
+        after all, the utility will start working automatically.
+
+        To start automatically, you must pass all the necessary parameters:
+            be sure the existing path, and the method (if you do not pass default
+            [destroy] is triggered, and the --yes or-y parameter is used.
+            The parameters -dd and --num can be used as desired.
+        sfd /path1 /path2 /pathN/file.file --shred -n 30 -dd -y
 
 Git Clone:
 ----------
 
 git clone https://github.com/mysmarthub/sfd.git
-
 cd sfd
-
 pip install -r requirements.txt
-
-python sfd/sfd.py /path/ /path2/ /path/file.file --shred -n 100 -dd -y
+python sfd/sfd.py /path1 /path2 /pathN/file.file --shred -n 30 -dd
 
 
 To delete some files, you may need administrator rights.
 To do this, install the package with the command:
 
 sudo pip install sfd
-
-sudo sfd /path/ /path2/ /path/file.file --shred -n 100 -dd -y
+sudo sfd /path1 /path2 /pathN/file.file --shred -n 30 -dd
 
 or:
 
 git clone https://github.com/mysmarthub/sfd.git
-
 cd sfd
-
 sudo pip install -r requirements.txt
-
-sudo python sfd/sfd.py /path/ /path2/ /path/file.file --shred -n 100 -dd -y
-
+sudo python sfd/sfd.py /path1 /path2 /pathN/file.file --shred -n 30 -dd
 
 Links:
-------
+======
 https://github.com/mysmarthub/sfd
-
-https://pypi.org/project/sfd/
-
-https://sourceforge.net/projects/smart-files-destroyer/files/latest/download
-
+https://pypi.org/project/sfd
+https://sourceforge.net/projects/sfd-package/files/latest/download
 
 Disclaimer of liability:
-------------------------
+========================
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -181,6 +188,6 @@ Disclaimer of liability:
     SOFTWARE.
 
 Support:
----
+========
     Email: mysmarthub@ya.ru
-    Copyright © 2020 Aleksandr Suvorov
+    Copyright © 2020-2021 Aleksandr Suvorov
