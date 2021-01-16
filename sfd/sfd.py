@@ -213,7 +213,7 @@ class SmartCleaner:
 def logo_start():
     """Output of the welcome logo"""
     smart.smart_print('', '*')
-    smart.smart_print(f'{__title__} v{__version__}', '=')
+    smart.smart_print(f' {__title__} v{__version__} ', '=')
     smart.smart_print('', '*')
     smart.smart_print('CLI utility for destroying, zeroing, and deleting files', ' ')
 
