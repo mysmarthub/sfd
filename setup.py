@@ -13,7 +13,7 @@ PACKAGE = "sfd"
 VERSION = __import__(PACKAGE).__version__
 AUTHOR = __import__(PACKAGE).__author__
 DONATE = __import__(PACKAGE).__donate__
-AUTHOR_EMAIL = "myhackband@yandex.ru"
+AUTHOR_EMAIL = "mysmarthub@yandex.ru"
 URL = __import__(PACKAGE).__url__
 DESCRIPTION = "Smart Files Destroyer - console utility for destroying (shred), zeroing, and deleting files" \
               " Aleksandr Suvorov | https://github.com/mysmarthub | https://yoomoney.ru/to/4100115206129186"
