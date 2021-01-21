@@ -35,26 +35,82 @@ on mobile phones and tablets.
     Files are destroyed even without root access and sudo.
     Read more about how to use the utility.
 
+
+Windows support:
+----------------
+Download sfd and run sfd.exe
+
+https://sourceforge.net/projects/smart-files-destroyer/
+
+or
+
+https://github.com/mysmarthub/sfd/releases/
+At the very bottom you will find download links.
+
+Since sfd.exe packed with pyinstaller,
+some antivirus software may react to it.
+
+Run sfd on Windows:
+
+1. Download and install the latest version of Python
+https://www.python.org/downloads/
+when installing, check the box " Add Python to PATH"
+
+2. Restart the system
+
+3. Start the console (win + r keyboard shortcut)
+
+4. Run the command:
+pip install sfd
+
+If the installation is successful and all the steps were performed correctly
+you can run sfd in the console with the command:
+sfd --help
+
+
+You can also download the archive with the program,
+unpack it to any convenient place, and if you have python installed:
+
+1. Install dependencies with the command:
+2. Find the file in the program folder requirements.txt
+3. pip install -r full path to the file requirements.txt
+Next, you can run the utility from the command line
+by specifying the full path to the sfd.py using the command:
+python sfd.py [arguments]
+
+---
+
 Description:
 ============
 Console utilities for destroying,
 zeroing, and deleting files.
 
+---
 With this package, you can develop graphical,
 console , and cross-platform applications to destroy,
 reset data in a file, and delete files
 so that they are difficult or impossible to recover.
 
+---
 You can also use a ready-made console utility for destruction,
 reset and delete files.
 
+---
 The utility allows you to destruct files,
 reset them to zero and delete them,
 for complete or partial difficulty in
 restoring them after deletion.
 
+---
 Be careful! When adding folders, all files from all subfolders
 will be added recursively.
+
+---
+- We recommend that you run the program on Linux, mount the disks,
+and work with them, because then you will have access to
+the destroy method with the function of overwriting files.
+When running in Windows, the destroy method will reset the
+files and then delete them without using multiple file overwrites!
 
 Help:
 =====
