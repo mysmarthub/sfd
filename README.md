@@ -68,11 +68,6 @@ Download sfd and run sfd.exe
 
 https://sourceforge.net/projects/smart-files-destroyer/
 
-or
-
-https://github.com/mysmarthub/sfd/releases/
-At the very bottom you will find download links.
-
 Since sfd.exe packed with pyinstaller,
 some antivirus software may react to it.
 

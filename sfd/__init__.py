@@ -3,12 +3,17 @@
 # -----------------------------------------------------------------------------
 # Licensed under the terms of the BSD 3-Clause License
 # (see LICENSE for details)
-# https://github.com/mysmarthub
+# https://github.com/mysmarthub/sfd/
 # Copyright © 2020-2021 Aleksandr Suvorov
 # -----------------------------------------------------------------------------
 """CLI utility for destroying, zeroing, and deleting files."""
 __version__ = '1.0.4'
 __author__ = 'Aleksandr Suvorov'
-__url__ = 'https://github.com/mysmarthub'
-__donate__ = 'Donate: 4048 4150 0400 5852 | 4276 4417 5763 7686'
+__url__ = 'https://github.com/mysmarthub/sfd/'
+__email__ = 'mysmarthub@ya.ru'
+__yandex__ = 'https://yoomoney.ru/to/4100115206129186'
+__paypal__ = 'https://paypal.me/myhackband'
 __copyright__ = 'Copyright © 2020-2021 Aleksandr Suvorov'
+__description__ = f"CLI utility for destroying, zeroing, and deleting files. " \
+                  f"{__copyright__} | {__yandex__} | {__paypal__}"
+__license__ = 'BSD 3-Clause License'

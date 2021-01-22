@@ -3,7 +3,7 @@
 # -----------------------------------------------------------------------------
 # Licensed under the terms of the BSD 3-Clause License
 # (see LICENSE for details)
-# https://github.com/mysmarthub
+# https://github.com/mysmarthub/sfd/
 # Copyright © 2020-2021 Aleksandr Suvorov
 # -----------------------------------------------------------------------------
 from setuptools import setup, find_packages
@@ -12,13 +12,11 @@ from os.path import join, dirname
 PACKAGE = "sfd"
 VERSION = __import__(PACKAGE).__version__
 AUTHOR = __import__(PACKAGE).__author__
-DONATE = __import__(PACKAGE).__donate__
-AUTHOR_EMAIL = "mysmarthub@yandex.ru"
+AUTHOR_EMAIL = __import__(PACKAGE).__email__
 URL = __import__(PACKAGE).__url__
-DESCRIPTION = "Smart Files Destroyer - console utility for destroying (shred), zeroing, and deleting files" \
-              " Aleksandr Suvorov | https://github.com/mysmarthub | https://yoomoney.ru/to/4100115206129186"
+DESCRIPTION = __import__(PACKAGE).__description__
 NAME = "sfd"
-LICENSE = 'BSD 3-Clause License'
+LICENSE = __import__(PACKAGE).__license__
 LONG_DESCRIPTION = open(join(dirname(__file__), 'README.md')).read()
 INSTALL_REQUIRES = open(join(dirname(__file__), 'requirements.txt')).read()
 PLATFORM = ['Linux, Windows']
@@ -39,6 +37,7 @@ CLASSIFIERS = [
 KEYWORDS = [
     'sfd',
     'destroy files',
+    'smart files destroyer',
     'shred files',
     'zero files',
     'del files',
@@ -49,7 +48,6 @@ KEYWORDS = [
     'mycleaner',
     'aleksandr suvorov',
     'smart-py.ru',
-    'hackband.ru'
 ]
 setup(
     name=NAME,

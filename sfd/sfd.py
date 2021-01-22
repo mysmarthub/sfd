@@ -3,7 +3,7 @@
 # -----------------------------------------------------------------------------
 # Licensed under the terms of the BSD 3-Clause License
 # (see LICENSE for details)
-# https://github.com/mysmarthub
+# https://github.com/mysmarthub/sfd/
 # Copyright © 2020-2021 Aleksandr Suvorov
 # -----------------------------------------------------------------------------
 """CLI utility for destroying, zeroing, and deleting files"""
@@ -15,10 +15,10 @@ from mycleaner import smart, cleaner
 
 TITLE = 'Smart Files Destroyer'
 VERSION = '1.0.4'
-AUTHOR = 'Aleksandr Suvorov'
-URL = 'https://github.com/mysmarthub/'
-COPYRIGHT = 'Copyright © 2020-2021 Aleksandr Suvorov'
 DESCRIPTION = 'CLI utility for destroying, zeroing, and deleting files'
+AUTHOR = 'Aleksandr Suvorov'
+URL = 'https://github.com/mysmarthub/sfd/'
+COPYRIGHT = 'Copyright © 2020-2021 Aleksandr Suvorov'
 YANDEX = 'https://yoomoney.ru/to/4100115206129186'
 PAYPAL = 'https://paypal.me/myhackband'
 README_URL = 'https://github.com/mysmarthub/sfd/blob/master/README.md'
@@ -221,7 +221,7 @@ def logo_start():
     smart.smart_print('', '*')
     smart.smart_print(f' {TITLE} v{VERSION} ', '=')
     smart.smart_print('', '*')
-    smart.smart_print('CLI utility for destroying, zeroing, and deleting files', ' ')
+    smart.smart_print(f'{DESCRIPTION}', ' ')
 
 
 def logo_finish():
@@ -290,7 +290,7 @@ def cli(paths, yes, num, method, del_dirs):
     -Use:
     sfd /path1 /path2 /pathN/file.file --shred -n 30 -dd -y
 
-    https://github.com/mysmarthub/sfd
+    https://github.com/mysmarthub/sfd/
     mysmarthub@ya.ru
     """
     work = True
