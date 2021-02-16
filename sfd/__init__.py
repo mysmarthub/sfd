@@ -14,6 +14,5 @@ __email__ = 'mysmarthub@ya.ru'
 __yandex__ = 'https://yoomoney.ru/to/4100115206129186'
 __paypal__ = 'https://paypal.me/myhackband'
 __copyright__ = 'Copyright © 2020-2021 Aleksandr Suvorov'
-__description__ = f"CLI utility for destroying, zeroing, and deleting files. " \
-                  f"{__copyright__} | {__yandex__} | {__paypal__}"
+__description__ = f"CLI utility for destroying, zeroing, and deleting files."
 __license__ = 'BSD 3-Clause License'

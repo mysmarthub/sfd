@@ -30,6 +30,7 @@ def open_url(url):
 
 class SmartCleaner:
     """Managing the operation of the utility"""
+
     def __init__(self, paths: set, method: str = 'destroy', num=30, del_dirs=False):
         """
         When creating an object, it takes as parameters:
@@ -53,9 +54,9 @@ class SmartCleaner:
             if user_path == '0':
                 break
             if self.add_path(user_path):
-                print('Path added successfully!')
+                click.echo('Path added successfully!')
             else:
-                print('Error! Invalid path or path was added earlier!')
+                click.echo('Error! Invalid path or path was added earlier!')
 
     def prompt_remove_path(self):
         """User's choice of paths to exclude"""
@@ -67,18 +68,18 @@ class SmartCleaner:
             click.echo('Added paths: ')
             smart.smart_print()
             for n, path in path_num_list.items():
-                print(f'{n}. Path{path}')
+                click.echo(f'{n}. Path{path}')
             user_input = click.prompt('Enter the path number to delete (0 - back)', type=int)
             smart.smart_print()
             if user_input == 0:
                 break
             if user_input not in path_num_list:
-                print('Input Error!')
+                click.echo('Input Error!')
             else:
                 if self.remove_path(path_num_list[user_input]):
-                    print('The path was successfully deleted!')
+                    click.echo('The path was successfully deleted!')
                 else:
-                    print('Error while deleting route!')
+                    click.echo('Error while deleting route!')
 
     def add_path(self, path: str) -> bool:
         """Adding a path"""
@@ -101,9 +102,9 @@ class SmartCleaner:
                 msg = f'{n} Path[{path}]' \
                       f' Files[{smart.get_count_files(path)}] ' \
                       f'Folders[{smart.get_count_dirs(path)}]'
-                print(msg)
+                click.echo(msg)
         else:
-            print('There is no way to display...')
+            click.echo('There is no way to display...')
 
     def show(self):
         """Displays all folders and files that are contained in the added paths"""
@@ -115,34 +116,34 @@ class SmartCleaner:
                 if os.path.isdir(path):
                     click.echo('Folders:')
                     for n, folder in enumerate(smart.get_folders_gen(path), 1):
-                        print(f'{n} Path[{folder}]')
+                        click.echo(f'{n} Path[{folder}]')
                     click.echo()
                     click.echo('Files:')
                     for n, file in enumerate(smart.get_files_gen(path), 1):
-                        print(f'{n} Path[{file}]')
+                        click.echo(f'{n} Path[{file}]')
         else:
-            print('There is no way to display...')
+            click.echo('There is no way to display...')
 
     def update_method(self):
         """Getting user input to change the way the utility works"""
         while 1:
             method_dict = {n: m for n, m in enumerate(['destroy', 'zeroing', 'delete', 'test'], 1)}
-            print('0. Cancel')
+            click.echo('0. Cancel')
             for n, m in method_dict.items():
                 msg = f'{n}: {m}'
                 if self.method == m:
                     msg += ' [x]'
-                print(msg)
+                click.echo(msg)
             user_method = click.prompt(f'Select a method', type=int)
             if not user_method:
                 break
             smart.smart_print()
             if user_method not in method_dict:
-                print('Input Error!')
+                click.echo('Input Error!')
                 continue
             else:
                 self.method = method_dict[user_method]
-                print(f'The method is successfully changed to {self.method}!')
+                click.echo(f'The method is successfully changed to {self.method}!')
             break
 
     @property
@@ -189,13 +190,13 @@ class SmartCleaner:
             for file in obj_data.get_files():
                 count_files += 1
                 smart.smart_print()
-                print(f'[{count_files}][{self.method}] File: {file}')
+                click.echo(f'[{count_files}][{self.method}] File: {file}')
                 status = self.__work(smart_cleaner, file)
                 smart.print_status(status)
             smart.smart_print()
             if self.del_dirs:
                 for path in obj_data.get_dirs():
-                    print(f'Delete folder: {path}')
+                    click.echo(f'Delete folder: {path}')
                     if self.method != 'test':
                         status = smart_cleaner.del_dir(path)
                     else:
@@ -203,24 +204,23 @@ class SmartCleaner:
                     smart.print_status(status)
                     count_dirs += 1
                 smart.smart_print()
-            print(f'The work has been completed:\n'
-                  f'Processed files: [{count_files - len(smart_cleaner.errors)}]\n'
-                  f'Deleted folders: [{count_dirs}]\n'
-                  f'Errors: [{len(smart_cleaner.errors)}]')
+            click.echo(f'The work has been completed:\n'
+                       f'Processed files: [{count_files - len(smart_cleaner.errors)}]\n'
+                       f'Deleted folders: [{count_dirs}]\n'
+                       f'Errors: [{len(smart_cleaner.errors)}]')
             if smart_cleaner.errors:
                 smart.smart_print(f' Errors: [{len(smart_cleaner.errors)}]')
                 for err in smart_cleaner.errors:
-                    print(err)
+                    click.echo(err)
             self.clear()
         else:
-            print('There is no way to work...')
+            click.echo('There is no way to work...')
 
 
 def logo_start():
     """Output of the welcome logo"""
     smart.smart_print('', '*')
-    smart.smart_print(f' {TITLE} v{VERSION} ', '=')
-    smart.smart_print('', '*')
+    smart.smart_print(f'{TITLE} v{VERSION}', '=')
     smart.smart_print(f'{DESCRIPTION}', ' ')
 
 
@@ -228,12 +228,10 @@ def logo_finish():
     """Output of the completion logo"""
     click.echo()
     click.echo('Exit...')
-    smart.smart_print('The program is complete', '-')
-    smart.smart_print(f'{URL}', ' ')
-    smart.smart_print(f'{YANDEX}', ' ')
-    smart.smart_print(f'{PAYPAL}', ' ')
-    smart.smart_print(f'{COPYRIGHT}', ' ')
-    smart.smart_print('', '=')
+    smart.smart_print(f'{URL}', '-')
+    smart.smart_print(f'{YANDEX}', '-')
+    smart.smart_print(f'{COPYRIGHT}', '=')
+    smart.smart_print('The program is complete', '*')
 
 
 def print_version(ctx, value):
@@ -301,7 +299,6 @@ def cli(paths, yes, num, method, del_dirs):
             smart.smart_print()
             click.echo(f'Main Menu. {my_cleaner}:')
             smart.smart_print()
-            click.echo(f'0. Exit')
             click.echo(f'1. Start')
             click.echo(f'2. Add Path')
             click.echo(f'3. Remove Path')
@@ -309,12 +306,13 @@ def cli(paths, yes, num, method, del_dirs):
             click.echo(f'5. Show files and folders')
             click.echo(f'6. To change the method [{my_cleaner.method}]')
             click.echo(f'7. Open help url')
+            click.echo(f'0. Exit')
             smart.smart_print()
             action = click.prompt('Enter', type=int)
             smart.smart_print()
             if action == 1:
                 if not my_cleaner.paths:
-                    print("Error! You didn't add a path!")
+                    click.echo("Error! You didn't add a path!")
                     continue
                 work = True
                 break
@@ -334,7 +332,9 @@ def cli(paths, yes, num, method, del_dirs):
                 work = False
                 break
             else:
-                print('Invalid input!')
+                click.echo('Invalid input!')
+            if action not in (2,):
+                input('Enter for continue...')
     if work:
         my_cleaner.start()
     logo_finish()
