@@ -14,7 +14,7 @@ import click
 from mycleaner import smart, cleaner
 
 TITLE = 'Smart Files Destroyer'
-VERSION = '1.0.4'
+VERSION = '1.0.5'
 DESCRIPTION = 'CLI utility for destroying, zeroing, and deleting files'
 AUTHOR = 'Aleksandr Suvorov'
 URL = 'https://github.com/mysmarthub/sfd/'

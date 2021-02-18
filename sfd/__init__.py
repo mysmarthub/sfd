@@ -7,7 +7,7 @@
 # Copyright © 2020-2021 Aleksandr Suvorov
 # -----------------------------------------------------------------------------
 """CLI utility for destroying, zeroing, and deleting files."""
-__version__ = '1.0.4'
+__version__ = '1.0.5'
 __author__ = 'Aleksandr Suvorov'
 __url__ = 'https://github.com/mysmarthub/sfd/'
 __email__ = 'mysmarthub@ya.ru'
