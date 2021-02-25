@@ -44,8 +44,11 @@ Smart Files Destroyer
 ---
 Help the project financially:
 ---
+
 https://yoomoney.ru/to/4100115206129186
+
 Visa:    4048 4150 0400 5852
+
 https://paypal.me/myhackband
 
 ---
