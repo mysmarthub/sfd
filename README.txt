@@ -1,5 +1,6 @@
+=====================
 Smart Files Destroyer
-==========
+=====================
 CLI utility for destroying,
 zeroing, and deleting files.
 Author and developer: Aleksandr Suvorov
@@ -11,12 +12,11 @@ https://yoomoney.ru/to/4100115206129186
 Visa:    4048 4150 0400 5852
 https://paypal.me/myhackband
 
-What's new?
-===========
-The program code has been completely redesigned.
-The interface has been completely changed,
-bugs have been fixed, new features have been added,
-and work has been accelerated.
+---
+What's news?
+-----
+
+A new interface!
 
 Termux support:
 ===============
@@ -35,46 +35,7 @@ on mobile phones and tablets.
     Files are destroyed even without root access and sudo.
     Read more about how to use the utility.
 
-
-Windows support:
-----------------
-Download sfd and run sfd.exe
-
-https://sourceforge.net/projects/smart-files-destroyer/
-
-Since sfd.exe packed with pyinstaller,
-some antivirus software may react to it.
-
-Run sfd on Windows:
-
-1. Download and install the latest version of Python
-https://www.python.org/downloads/
-when installing, check the box " Add Python to PATH"
-
-2. Restart the system
-
-3. Start the console (win + r keyboard shortcut)
-
-4. Run the command:
-pip install sfd
-
-If the installation is successful and all the steps were performed correctly
-you can run sfd in the console with the command:
-sfd --help
-
-
-You can also download the archive with the program,
-unpack it to any convenient place, and if you have python installed:
-
-1. Install dependencies with the command:
-2. Find the file in the program folder requirements.txt
-3. pip install -r full path to the file requirements.txt
-Next, you can run the utility from the command line
-by specifying the full path to the sfd.py using the command:
-python sfd.py [arguments]
-
----
-
+------------
 Description:
 ============
 Console utilities for destroying,
@@ -228,17 +189,36 @@ https://github.com/mysmarthub/sfd
 https://pypi.org/project/sfd
 https://sourceforge.net/projects/sfd-package/files/latest/download
 
+------------------------
 Disclaimer of liability:
-========================
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+------------------------
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
+-------------
+Requirements:
+-------------
+
+[Click](https://github.com/pallets/click) by [license](https://github.com/pallets/click/blob/master/LICENSE.rst)
+
+[Smart Files Destroyer](https://github.com/mysmarthub/mycleaner/)
+
+[Python 3+](https://python.org)
+
+--------
 Support:
-========
+--------
     Email: mysmarthub@ya.ru
+    Copyright © 2020 Aleksandr Suvorov
+
+    -----------------------------------------------------------------------------
+    Licensed under the terms of the BSD 3-Clause License
+    (see LICENSE.txt for details)
+    https://github.com/mysmarthub
     Copyright © 2020-2021 Aleksandr Suvorov
+    -----------------------------------------------------------------------------
