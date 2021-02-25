@@ -326,9 +326,9 @@ def cli(paths, yes, num, method, del_dirs):
     my_cleaner = SmartCleaner(paths=set(paths), method=method, num=num, del_dirs=del_dirs)
     if not yes or not my_cleaner.paths:
         while 1:
-            smart_print()
-            click.echo(f'Main Menu. {my_cleaner}:')
-            smart_print()
+            smart_print('Paths')
+            click.echo(f'{my_cleaner}:')
+            smart_print('Main Menu')
             click.echo(f's: Start')
             click.echo(f'a: Add Path')
             click.echo(f'r: Remove Path')
