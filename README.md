@@ -61,6 +61,14 @@ and work has been accelerated.
 
 
 ---
+Warning!
+---
+> You can see information about earlier versions on the release page: 
+> 
+> https://github.com/mysmarthub/mycleaner/releases.
+
+
+---
 What's news?
 -----
 

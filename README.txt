@@ -12,10 +12,15 @@ https://yoomoney.ru/to/4100115206129186
 Visa:    4048 4150 0400 5852
 https://paypal.me/myhackband
 
+
+Warninig!
+========
+You can see information about earlier versions on the release page:
+https://github.com/mysmarthub/mycleaner/releases.
+
 ---
 What's news?
 -----
-
 A new interface!
 
 Termux support:
@@ -206,7 +211,7 @@ Requirements:
 
 [Click](https://github.com/pallets/click) by [license](https://github.com/pallets/click/blob/master/LICENSE.rst)
 
-[Smart Files Destroyer](https://github.com/mysmarthub/mycleaner/)
+[Smart Files Destroyer](https://github.com/mysmarthub/sfd/)
 
 [Python 3+](https://python.org)
 

@@ -10,7 +10,7 @@ NAME = "sfd"
 
 TITLE = 'Smart Files Destroyer'
 DESCRIPTION = 'CLI utility for destroying, zeroing, and deleting files'
-VERSION = '1.0.6'
+VERSION = '1.1.0'
 
 AUTHOR = 'Aleksandr Suvorov'
 EMAIL = 'mysmarthub@ya.ru'
