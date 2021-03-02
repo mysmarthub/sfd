@@ -16,7 +16,7 @@ https://paypal.me/myhackband
 Warninig!
 ========
 You can see information about earlier versions on the release page:
-https://github.com/mysmarthub/mycleaner/releases.
+https://github.com/mysmarthub/sfd/releases.
 
 ---
 What's news?
@@ -43,128 +43,86 @@ on mobile phones and tablets.
 ------------
 Description:
 ============
-Console utilities for destroying,
-zeroing, and deleting files.
+CLI utility for shredding, erasing, and deleting files.
 
 ---
-With this package, you can develop graphical,
-console , and cross-platform applications to destroy,
-reset data in a file, and delete files
-so that they are difficult or impossible to recover.
+The utility allows you to shred files,
+erase files, for complete or partial difficulty
+their recovery after removal.
 
----
-You can also use a ready-made console utility for destruction,
-reset and delete files.
-
----
-The utility allows you to destruct files,
-reset them to zero and delete them,
-for complete or partial difficulty in
-restoring them after deletion.
-
----
 Be careful! When adding folders, all files from all subfolders
 will be added recursively.
 
----
-- We recommend that you run the program on Linux, mount the disks,
+We recommend that you run the program on Linux, mount the disks,
 and work with them, because then you will have access to
 the destroy method with the function of overwriting files.
-When running in Windows, the destroy method will reset the
-files and then delete them without using multiple file overwrites!
 
 Help:
-=====
+-----
 
-Usage: sfd.py [OPTIONS] [PATHS]...
+    Usage: sfd.py [OPTIONS] COMMAND [ARGS]...
 
-  Smart Files Destroyer - CLI utility for destroying, zeroing, and deleting files.
+      Smart Files Destroyer - CLI utility for shredding, erasing, and deleting files.
 
-  PATHS - these are the paths to files and folders with files separated by a
-  space, if there are spaces in the path name, escape them, or put them in
-  quotation marks.
+      [ARGS]... - Paths to files and/or folders with files cli.py -y -dd
+      shred /path/ /path2/ /pathN/file.file
 
-  - Console utility for destruction, zeroing, and deleting files.
+      sfd.py -y -dd shred /path/ /path2/ /pathN/file.file -n 100
+      sfd.py -y -dd erase /path/ /path2/ /pathN/file.file
+      sfd.py -y -dd delete /path/ /path2/ /pathN/file.file
 
-  - The utility allows you to destruct files, reset them to zero and delete
-  them, for complete or partial difficulty in restoring them after deletion.
+    Options:
+      -v, --version    Displays the version of the program and exits.
+      -y, --yes        Auto Mode
+      -dd, --del-dirs  Delete the folders?
+      --help           Show this message and exit.
 
-  - Be careful! When adding folders, all files from all subfolders will be
-  added recursively.
+    Commands:
+      delete  Deleting files
+      erase   Erasing files
+      shred   Shredding files
 
-  -Use:
-    sfd /path1 /path2 /pathN/file.file --shred -n 30 -dd -y
-
-  https://github.com/mysmarthub/sfd mysmarthub@ya.ru
-
-Options:
-  -v, --version      Displays the version of the program and exits.
-  -y, --yes          Auto Mode, be very careful with this parameter, if you
-                     specify it, the program will start and start destroying
-                     files automatically.
-
-  -n, --num INTEGER  Number of overwrites. If you use the shred method, each
-                     file will be overwritten the specified number of times
-                     before being destroyed.
-
-  -s, --shred        Overwrites random data, renames and deletes the file,
-                     used by default.
-
-  -z, --zero         Resets and does not delete the file.
-  -d, --del          Resets and deletes the file.
-  -t, --test         The test method, files and folders will remain unchanged.
-  -dd, --del-dirs    Delete the folders?
-  --help             Show this message and exit.
 
 Use:
-====
+----
 
 Package installation:
 ---------------------
     `pip install sfd`
 
+To create applications:
+-----------------------
+    from sfd import smart, cleaner
+
 Launch and use the ready-made utility:
 --------------------------------------
     - After installation, you can run the utility using its name.
-        sfd
+        sfd --help
 
     - See the help page to understand how to work with the utility
 
-    - After the name, specify the paths to files and folders separated by a space,
-        on some systems if the path contains spaces or others
-        forbidden characters, and the system itself does not escape such a path,
-        either escape such a path or enclose it in quotation marks.
-        sfd /path1 /path2 /pathN/file.file
-
-    - Next, you should specify the method for the utility to work. At the moment
-        there are 4 methods available: --shred, --zero, --del, --test.
-    --shred: [destroy] - overwrites and deletes the file.
-    --zero: [zeroing] - completely destroys the information inside the file,
-        but does not delete the file.
-    --del: [delete] - First applies [zeroing], then deletes the file.
-    --test: [test] - Running the program in test mode, no
-        files or folders will not be deleted
-    sfd /path1 /path2 /pathN/file.file --shred
-
-    - When using the method --shred ([destroy])
-        you can specify the number of file overwrites
-        using the parameter --num 100 или -n 100,
-        with any number separated by a space.
-    sfd /path1 /path2 /pathN/file.file --shred -n 30
+      sfd.py -y -dd shred /path/ /path2/ /pathN/file.file -n 100
+      sfd.py -y -dd erase /path/ /path2/ /pathN/file.file
+      sfd.py -y -dd delete /path/ /path2/ /pathN/file.file
 
     - To delete empty folders after work, use the parameter --del-dirs или -dd
 
     - You can also run the utility in automatic execution mode
         (for example, use it to start and run at a certain time
         using the task scheduler). To do this, you should send an additional message
-        the --yes or-y parameter. Be careful using this parameter,
+        the --yes or -y parameter. Be careful using this parameter,
         after all, the utility will start working automatically.
 
-        To start automatically, you must pass all the necessary parameters:
-            be sure the existing path, and the method (if you do not pass default
-            [destroy] is triggered, and the --yes or-y parameter is used.
-            The parameters -dd and --num can be used as desired.
-        sfd /path1 /path2 /pathN/file.file --shred -n 30 -dd -y
+
+To delete some files, you may need administrator rights.
+To do this, install the package with the command:
+
+sudo pip install sfd
+
+sudo sfd -y -dd shred /path/ /path2/ /pathN/file.file -n 100
+sudo sfd -y -dd erase /path/ /path2/ /pathN/file.file
+sudo sfd -y -dd delete /path/ /path2/ /pathN/file.file
+
 
 Git Clone:
 ----------
@@ -211,7 +169,7 @@ Requirements:
 
 [Click](https://github.com/pallets/click) by [license](https://github.com/pallets/click/blob/master/LICENSE.rst)
 
-[Smart Files Destroyer](https://github.com/mysmarthub/sfd/)
+[My Cleaner](https://github.com/mysmarthub/mycleaner/)
 
 [Python 3+](https://python.org)
 

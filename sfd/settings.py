@@ -9,8 +9,8 @@ PACKAGE = "sfd"
 NAME = "sfd"
 
 TITLE = 'Smart Files Destroyer'
-DESCRIPTION = 'CLI utility for destroying, zeroing, and deleting files'
-VERSION = '1.1.0'
+DESCRIPTION = 'CLI utility for shredding, erasing, and deleting files.'
+VERSION = '1.1.1'
 
 AUTHOR = 'Aleksandr Suvorov'
 EMAIL = 'mysmarthub@ya.ru'

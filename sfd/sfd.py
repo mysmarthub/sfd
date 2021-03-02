@@ -9,7 +9,12 @@
 """CLI utility for shredding, erasing, and deleting files."""
 import click
 
-from mycleaner import smart, cleaner, settings
+from mycleaner import smart, cleaner
+
+try:
+    from sfd import settings
+except ImportError:
+    import settings
 
 
 def get_action(title):
